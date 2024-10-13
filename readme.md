@@ -24,5 +24,5 @@ sh compile.sh
 ```
 
 ## Exampes
-![alt text](resources/1.png "1.png")
-![alt text](resources/2.png "2.png")
+![alt text](resource/1.png "1.png")
+![alt text](resource/2.png "2.png")
