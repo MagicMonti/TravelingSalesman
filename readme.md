@@ -8,6 +8,7 @@ This project provides a modular c++ interface to develop and test algorithms. Th
 ```bash
 # installation of libraries
 sudo apt-get install libsfml-dev
+sudo apt-get install libboost-all-dev
 ```
 
 ```bash
