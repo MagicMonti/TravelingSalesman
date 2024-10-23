@@ -13,7 +13,7 @@ sudo apt-get install libsfml-dev
 ```bash
 # compile project
 cd /path/to/project
-sh compile.sh
+make
 ```
 
 ```bash

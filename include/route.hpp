@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "point.hpp"
 #include "algo/algo.hpp"
 
@@ -16,6 +17,8 @@ class Route{
         Algo* algo;
         uint id;
         uint pos;
+        bool isActivated;
+        sf::CircleShape indicator;
 
     public:
         static uint count;
@@ -28,7 +31,11 @@ class Route{
         void setColor(sf::Color color);
         void draw(sf::RenderWindow& window);
         double getLength();
+        void activate();
+        void deActivate();
+        uint getPos();
         static double calcLength(std::vector<uint>& arangement,  Point* points);
+
 };
 
 #endif

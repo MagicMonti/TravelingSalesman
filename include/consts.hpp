@@ -9,6 +9,7 @@ namespace consts{
     extern sf::Font font;
     extern sf::Font font_2;
     void loadFont(void);
+    float getDPIScaleFactor(void);
 }
 
 #endif

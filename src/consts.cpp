@@ -13,5 +13,8 @@ namespace consts{
         }
 
     }
+    float getDPIScaleFactor(void){
+        return 2.0;
+    }
 }
 
