@@ -6,6 +6,7 @@
 #include <memory>
 #include <chrono>
 #include <thread>
+#include <cmath>
 #include "../include/point.hpp"
 #include "../include/route.hpp"
 #include "../include/consts.hpp"
@@ -14,6 +15,7 @@
 #include "../include/algo/permutation.hpp"
 #include "../include/algo/donothing.hpp"
 #include "../include/algo/shortest.hpp"
+#include "../include/algo/shortestN.hpp"
 
 
 
@@ -46,9 +48,11 @@ int main(int argc, char* argv[]){
     Permutation perm(points);
     DoNothing doNothing(points);
     Shortest shortest(points);
+    ShortestN shortestN(points);
 
     routes.emplace_back(Route(&perm, sf::Color::Green,1));
     routes.emplace_back(Route(&shortest, sf::Color::Yellow,2));
+    routes.emplace_back(Route(&shortestN, sf::Color::Red,3));
   
     float dpiScale = consts::getDPIScaleFactor();
 
@@ -66,9 +70,10 @@ int main(int argc, char* argv[]){
     /*std::vector<bool> bits(routes.size());
     setBoolVec(bits,0);
 */
-    std::cout<< "calc done\n";
+    //std::cout<< "calc done\n";
     BitSet bits(routes.size()); //2 bits = 00
-    bits.print();
+    bits.setOne();
+    //bits.print();
 
     bool keyPressState_up = false;
     bool keyPressState_down = false;
@@ -109,7 +114,13 @@ int main(int argc, char* argv[]){
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !keyPressState_down){
                 keyPressState_down = true;
-                bits >>= 1;
+                if(bits.isZero()){
+                    bits = uint(pow(2, routes.size()-1));
+
+                }else{
+                    bits >>= 1;
+                }
+                
             //key release
             }else if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))){
                 keyPressState_down = false; 

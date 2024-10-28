@@ -31,7 +31,7 @@ Point::Point(uint id){
     boost::random::mt19937 rng;
     rng.seed(static_cast<unsigned int>(std::time(0) + id));
 
-    boost::random::uniform_real_distribution<double> dist_1(20, consts::MAX_X-20);
+    boost::random::uniform_real_distribution<double> dist_1(consts::MAX_X/2, consts::MAX_X-20);
     boost::random::uniform_real_distribution<double> dist_2(20, consts::MAX_Y-20);
     this->position[0] = dist_1(rng) ;
     this->position[1] = dist_2(rng) ;

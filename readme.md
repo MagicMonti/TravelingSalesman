@@ -24,6 +24,40 @@ make
 ./traveling_salesman 10
 ```
 
-## Exampes
+# Press the `↑` key to scroll up likewise `↓` to scroll down
+## no selection
+![alt text](resource/1.png "0.png")
+
+## exact solution (permutation)
 ![alt text](resource/1.png "1.png")
+
+## neares neighbour of 0 
 ![alt text](resource/2.png "2.png")
+
+## neares neighbour with different starting points. 
+![alt text](resource/3.png "2.png")
+
+
+# How to create an own algorithm
+```bash
+# adding the sourc and header file
+# see other algorithms for implementation
+touch include/algo/{algo_name.hpp}
+touch src/algo/{algo_name.cpp}
+```
+
+in `main.cpp` insert the following;
+```c++
+#include "../include/algo/{algo_name}.hpp"
+```
+create algorithm object
+```c++
+Algo_name algo_name(points);
+```
+and add to route
+```c++
+routes.emplace_back(Route(&algo_name, sf::Color::Blue,3)); //3 is the id
+```
+
+
+

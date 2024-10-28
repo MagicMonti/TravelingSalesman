@@ -34,7 +34,7 @@ std::vector<uint>* Permutation::calBestArangement(void){
       
         
     } while (std::next_permutation(this->arangement.begin(), this->arangement.end()));
-
+    this->cyclicPermutation();
     this->setLabel("permutation", length);
 
     return &tempArangement;

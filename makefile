@@ -16,7 +16,8 @@ SRCS = src/route.cpp \
        src/algo/algo.cpp \
        src/algo/donothing.cpp \
        src/algo/permutation.cpp \
-       src/algo/shortest.cpp
+       src/algo/shortest.cpp \
+       src/algo/shortestN.cpp \
 
 # Output executable
 TARGET = traveling_salesman

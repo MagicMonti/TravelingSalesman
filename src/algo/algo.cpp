@@ -26,9 +26,21 @@ std::string* Algo::getLabel(void){
 void Algo::setLabel(std::string name, double length){
     this->label = "min Length ("+name+"): " + std::to_string(length) + '\n'; 
     this->label += "Arangement: ";
-    for (auto entry : tempArangement){
+    for (auto entry : this->arangement){
         this->label += std::to_string(entry) + " " ;
     }
-    this->label += "0\n";
+    //this->label += "0\n";
+    this->label += std::to_string(this->arangement[0]);
+    this->label += "\n";
+    std::cout << label << std::endl;
+}
+void Algo::cyclicPermutation(){
+    while (this->arangement[0] != 0){
+        std::rotate(
+            this->arangement.begin(), 
+            this->arangement.begin() + 1,
+            this->arangement.end()
+        ); 
+    }
 }
 

@@ -35,11 +35,13 @@ std::vector<uint>* Shortest::calBestArangement(void){
         valid.erase(std::remove(valid.begin(), valid.end(), current->getId()));
         tempArangement.push_back(current->getId());
     }
+    
+    this->arangement = this->tempArangement;
 
   
-    double length = Route::calcLength(tempArangement, this->points);
+    double length = Route::calcLength(this->arangement, this->points);
 
-    this->setLabel("shortest", length);
+    this->setLabel("nearest", length);
 
     return &(this->tempArangement);
 }

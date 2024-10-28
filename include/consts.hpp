@@ -4,8 +4,8 @@
 #define CONSTS_HPP
 
 namespace consts{
-    const double MAX_X = 800;
-    const double MAX_Y = 600;
+    const double MAX_X = 1600;
+    const double MAX_Y = 1200;
     extern sf::Font font;
     extern sf::Font font_2;
     void loadFont(void);
