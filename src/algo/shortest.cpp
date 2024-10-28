@@ -43,5 +43,5 @@ std::vector<uint>* Shortest::calBestArangement(void){
 
     this->setLabel("nearest", length);
 
-    return &(this->tempArangement);
+    return &(this->arangement);
 }

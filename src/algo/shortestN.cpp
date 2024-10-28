@@ -25,6 +25,7 @@ std::vector<uint>* ShortestN::calBestArangement(void){
             tempArangement.push_back(current->getId());
         }
         temp = Route::calcLength(tempArangement, this->points);
+        std::cout << temp << std::endl;
         if (temp < length){
             length = temp;
         }
@@ -36,5 +37,5 @@ std::vector<uint>* ShortestN::calBestArangement(void){
     this->cyclicPermutation();
     this->setLabel("nearest-N", length);
 
-    return &(this->tempArangement);
+    return &(this->arangement);
 }

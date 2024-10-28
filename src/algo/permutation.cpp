@@ -21,21 +21,21 @@ uint factorial(uint n) {
 std::vector<uint>* Permutation::calBestArangement(void){
     
  
-    double length = std::numeric_limits<double>::max() ;
+    double length = __DBL_MAX__ ;
     this->tempArangement = this->arangement; //copy
     
     do {
      
-        double tempLenght = Route::calcLength(this->arangement, this->points);
+        double tempLenght = Route::calcLength(this->tempArangement, this->points);
         if (tempLenght < length){
             length = tempLenght;
-            this->tempArangement = this->arangement; //copy
+            this->arangement = this->tempArangement; //copy
         }
       
         
-    } while (std::next_permutation(this->arangement.begin(), this->arangement.end()));
+    } while (std::next_permutation(this->tempArangement.begin(), this->tempArangement.end()));
     this->cyclicPermutation();
     this->setLabel("permutation", length);
 
-    return &tempArangement;
+    return &this->arangement;
 }

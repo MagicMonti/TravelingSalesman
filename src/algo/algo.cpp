@@ -30,7 +30,7 @@ void Algo::setLabel(std::string name, double length){
         this->label += std::to_string(entry) + " " ;
     }
     //this->label += "0\n";
-    this->label += std::to_string(this->arangement[0]);
+    //this->label += std::to_string(this->arangement[0]);
     this->label += "\n";
     std::cout << label << std::endl;
 }
