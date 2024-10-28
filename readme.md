@@ -42,8 +42,8 @@ make
 ```bash
 # adding the source and header file
 # see other algorithms for implementation
-touch include/algo/{algo_name.hpp}
-touch src/algo/{algo_name.cpp}
+touch include/algo/{algo_name}.hpp
+touch src/algo/{algo_name}.cpp
 ```
 
 in `main.cpp` insert the following;
@@ -57,6 +57,21 @@ Algo_name algo_name(points);
 and add to route
 ```c++
 routes.emplace_back(Route(&algo_name, sf::Color::Blue,3)); //3 is the id
+```
+add the {algo_name}.cpp file to `makefile`
+```
+# Source files
+SRCS = src/route.cpp \
+       src/point.cpp \
+       src/consts.cpp \
+       src/bitset.cpp \
+       src/main.cpp \
+       src/algo/algo.cpp \
+       src/algo/donothing.cpp \
+       src/algo/permutation.cpp \
+       src/algo/shortest.cpp \
+       src/algo/shortestN.cpp \
+       src/algo/{algo_name}.cpp \
 ```
 
 
