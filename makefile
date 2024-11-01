@@ -18,6 +18,7 @@ SRCS = src/route.cpp \
        src/algo/permutation.cpp \
        src/algo/shortest.cpp \
        src/algo/shortestN.cpp \
+       src/algo/nearestAvg.cpp \
 
 # Output executable
 TARGET = traveling_salesman

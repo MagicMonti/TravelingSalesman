@@ -13,7 +13,6 @@ Point::Point(){
     Point::count++;
     this->id = 0;
     this->isDummy = true;
-    //std::cout << "create default Point " << this->isDummy << '\n';
     
 }
 
@@ -24,8 +23,6 @@ Point::Point(uint id){
     this->name.setFont(consts::font);
     this->name.setCharacterSize(30);
     this->name.setFillColor(sf::Color::White);
-    //this->name.setStyle(sf::Text::Bold | sf::Text::Underlined);
-
     this->isDummy = false;
    
     boost::random::mt19937 rng;
@@ -36,7 +33,6 @@ Point::Point(uint id){
     this->position[0] = dist_1(rng) ;
     this->position[1] = dist_2(rng) ;
 
-    //std::cout << "create random Point " <<this->id<< '\n';
 
 }
 Point::Point(uint id, double x , double y){
@@ -44,10 +40,22 @@ Point::Point(uint id, double x , double y){
     this->id = id;
     this->position[0] = x;
     this->position[1] = y;
+     this->isDummy = false;
 }
+Point::Point(double x , double y){
+    /*this is a calculation point
+    no counter*/
+    this->isDummy = true;
+    this->id = INT_MAX;
+    this->position[0] = x;
+    this->position[1] = y;
+}
+
 Point::~Point(){
-    Point::count--;
-    //std::cout << "deleting " << this->id <<"|" << this->isDummy << '\n';
+    if (!this->isDummy){
+        Point::count--;
+    }
+   
 }
 
 
@@ -66,7 +74,7 @@ double Point::distanceToPoint(Point& point){
     //return pow(deltaX,2) + pow(deltaY,2);
 }
 void Point::print(){
-    std::cout << this->position[0] << " , " << this->position[1] << '\n';
+    //std::cout << this->position[0] << " , " << this->position[1] << '\n';
 }
 
 Point* Point::createPoints(uint numberOfPoints){
@@ -87,3 +95,25 @@ void Point::draw(sf::RenderWindow& window){
     window.draw(this->name);
     window.draw(point); 
 }
+void Point::operator+=(Point& point){
+    this->position[0] += point.getPosition()[0];
+    this->position[1] += point.getPosition()[1];
+}
+void Point::operator-=(Point& point){
+    this->position[0] -= point.getPosition()[0];
+    this->position[1] -= point.getPosition()[1];
+}
+void Point::operator/=(double number){
+    this->position[0] /= number;
+    this->position[1] /= number;
+}
+
+std::string Point::toString(){
+    std::string str = "x=";
+    str += std::to_string(this->position[0]) ;
+    str += ", y=";
+    str += std::to_string(this->position[1]) ;
+    return str;
+}
+
+

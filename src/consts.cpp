@@ -16,5 +16,14 @@ namespace consts{
     float getDPIScaleFactor(void){
         return 2.0;
     }
+    //template <typename T>
+    bool isIn(const uint& element, std::vector<uint>& vec){
+        for (auto el : vec){
+            if (el == element){
+                return true;
+            }
+        }
+        return false;
+    }
 }
 

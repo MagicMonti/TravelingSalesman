@@ -16,6 +16,7 @@
 #include "../include/algo/donothing.hpp"
 #include "../include/algo/shortest.hpp"
 #include "../include/algo/shortestN.hpp"
+#include "../include/algo/nearestAvg.hpp"
 
 
 
@@ -45,14 +46,16 @@ int main(int argc, char* argv[]){
     std::list<Route> routes;
 
     
-    Permutation perm(points);
+    //Permutation perm(points);
     DoNothing doNothing(points);
     Shortest shortest(points);
     ShortestN shortestN(points);
+    NearestAvg nearestAvg(points);
 
-    routes.emplace_back(Route(&perm, sf::Color::Green,1));
+    //routes.emplace_back(Route(&perm, sf::Color::Green,1));
     routes.emplace_back(Route(&shortest, sf::Color::Yellow,2));
     routes.emplace_back(Route(&shortestN, sf::Color::Red,3));
+    routes.emplace_back(Route(&nearestAvg, sf::Color::Blue,4));
   
     float dpiScale = consts::getDPIScaleFactor();
 

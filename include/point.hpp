@@ -1,3 +1,4 @@
+#include <string>
 #include <SFML/Graphics.hpp>
 #ifndef POINT_HPP
 #define POINT_HPP
@@ -24,6 +25,7 @@ class Point {
     public:
     	Point();
         Point(uint id, double x, double y);
+        Point(double x, double y);
         Point(uint id);
         ~Point();
         void draw(sf::RenderWindow& window);
@@ -32,6 +34,10 @@ class Point {
         uint getId(void);
         void print(void);
         static Point* createPoints(uint numberOfPoints);
+        void operator+=(Point& point);
+        void operator-=(Point& point);
+        void operator/=(double number);
+        std::string toString(void);
 };
 
 

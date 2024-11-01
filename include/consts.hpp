@@ -10,6 +10,8 @@ namespace consts{
     extern sf::Font font_2;
     void loadFont(void);
     float getDPIScaleFactor(void);
+    //template <typename T>
+    bool isIn(const uint& element, std::vector<uint>& vec);
 }
 
 #endif

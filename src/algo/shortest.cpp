@@ -17,6 +17,9 @@ Point* Shortest::getNearest(Point* current, Point* points, std::vector<uint> val
             nearestIndex = valid[i];
         }
     }
+    if (valid.size()==0){
+        return nullptr;
+    }
     return &(points[nearestIndex]);
 }
 
