@@ -6,10 +6,18 @@ This project provides a modular c++ interface to develop and test algorithms. Th
 
 
 ```bash
-# installation of libraries
+# install libraries
+# ubuntu
 sudo apt-get install libsfml-dev
 sudo apt-get install libboost-all-dev
+
+#fedora
+sudo dnf install SFML-devel
+sudo dnf install boost boost-devel
+
 ```
+
+
 
 ```bash
 # compile project

@@ -19,6 +19,34 @@
 #include "../include/algo/nearestAvg.hpp"
 
 
+void oneUP(BitSet *bits, uint numberOfRoutes){
+    /*if(!bits->isZero()){
+        *bits <<= 1;
+    }else{
+        //bits = 1;
+        bits->setOne();
+    }*/
+
+    if(*bits == uint(pow(2, numberOfRoutes-1))){
+        bits->setOne();
+    }else{
+        *bits <<= 1;
+    }
+}
+void oneDown(BitSet *bits, uint numberOfRoutes){
+    /*if(bits->isZero()){
+        *bits = uint(pow(2, numberOfRoutes-1));
+    }else{
+        *bits >>= 1;
+    }*/
+    if (*bits == 1){
+        *bits = uint(pow(2, numberOfRoutes-1));
+    }else{
+        *bits >>= 1;
+    }
+}
+
+
 
 
 int main(int argc, char* argv[]){
@@ -46,13 +74,13 @@ int main(int argc, char* argv[]){
     std::list<Route> routes;
 
     
-    //Permutation perm(points);
+    Permutation perm(points);
     DoNothing doNothing(points);
     Shortest shortest(points);
     ShortestN shortestN(points);
     NearestAvg nearestAvg(points);
 
-    //routes.emplace_back(Route(&perm, sf::Color::Green,1));
+    routes.emplace_back(Route(&perm, sf::Color::Green,1));
     routes.emplace_back(Route(&shortest, sf::Color::Yellow,2));
     routes.emplace_back(Route(&shortestN, sf::Color::Red,3));
     routes.emplace_back(Route(&nearestAvg, sf::Color::Blue,4));
@@ -76,57 +104,53 @@ int main(int argc, char* argv[]){
     //std::cout<< "calc done\n";
     BitSet bits(routes.size()); //2 bits = 00
     bits.setOne();
-    //bits.print();
+   
 
-    bool keyPressState_up = false;
-    bool keyPressState_down = false;
+    sf::Event event;
+
+    
 
 
     while (window.isOpen()) {
         auto start = std::chrono::high_resolution_clock::now();
-        sf::Event event;
+        
         window.clear();
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
-        }
-        { //scope to not interfier with integers
-            uint i = 0 ;
-            for (auto& route : routes) {
-                if (bits[i]){
-                    route.activate();
-                }else{
-                    route.deActivate();
+        
+            { //scope to not interfier with integers
+                uint i = 0 ;
+                for (auto& route : routes) {
+                    if (bits[i]){
+                        route.activate();
+                    }else{
+                        route.deActivate();
+                    }
+                    i++;
                 }
-                i++;
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !keyPressState_up){
-                keyPressState_up = true;
-                //if (bits != 0){
-                if(!bits.isZero()){
-                    bits <<= 1;
-                }else{
-                    //bits = 1;
-                    bits.setOne();
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+                   oneUP(&bits, routes.size());
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+                   oneDown(&bits, routes.size());
+                }    
+                //mouse wheel handeling
+                if (event.type == sf::Event::MouseWheelScrolled){
+                    float delta = event.mouseWheelScroll.delta;
+                    const sf::Mouse::Wheel wheel = event.mouseWheelScroll.wheel;
+                    if (wheel == sf::Mouse::VerticalWheel){
+                        std::cout << delta << "\n";
+                        //a typical tick is +-1 
+                        if (delta > 0 ){ 
+                            oneUP(&bits, routes.size());
+                        }
+                        if (delta < 0){
+                            oneDown(&bits, routes.size());
+                        }
+                    }
                 }
 
-            //key release
-            }else if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))){
-                keyPressState_up = false;
-               
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !keyPressState_down){
-                keyPressState_down = true;
-                if(bits.isZero()){
-                    bits = uint(pow(2, routes.size()-1));
-
-                }else{
-                    bits >>= 1;
-                }
-                
-            //key release
-            }else if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))){
-                keyPressState_down = false; 
             }
         }
 
